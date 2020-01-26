@@ -1,0 +1,24 @@
+<table>
+  <tr *ngFor="let game of games">
+    <td>{{game.title}}</td>
+    <td>
+      <button (click)="game.votes = game.votes + 1; total = total + 1; game.disabled = true"
+              [disabled]="game.disabled">
+        Vote
+      </button>
+    </td>
+    <td>
+      <button (click)="game.votes = game.votes - 1; total = total - 1; game.disabled = false"
+              [disabled]="!game.disabled">
+        Unvote
+      </button>
+    </td>
+    <td *ngIf="show">{{game.votes}}</td>
+  </tr>
+</table>
+<button (click)="nextVoter()">Next Voter</button>
+<br />
+<br />
+
+<div style="color: red;">Total Votes Cast: {{total}}</div>
+<button (click)="show = !show">Show Votes</button>

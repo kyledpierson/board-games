@@ -1,0 +1,22 @@
+<div class="wrapper">
+  <div class="table">
+    <div class="row header">
+      <div class="cell" *ngFor="let header of headers">
+        {{header | header}}
+        <i class="fa fa-arrow-down" aria-hidden="true"
+           (click)="sort(header)" *ngIf="headersSort[header]"></i>
+        <i class="fa fa-arrow-up" aria-hidden="true"
+           (click)="sort(header)" *ngIf="!headersSort[header]"></i>
+      </div>
+    </div>
+    <div class="row" *ngFor="let game of games">
+      <div class="cell" *ngFor="let header of headers">
+        <span *ngIf="header != 'image'">{{game[header]}}</span>
+        <img [src]="game[header]" class="thumbnail" *ngIf="header == 'image'" />
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<button (click)="refreshGames()">Refresh Games</button>
